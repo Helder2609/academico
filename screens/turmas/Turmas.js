@@ -1,10 +1,10 @@
 import React from 'react'
 import { Text } from 'react-native-paper'
 
-const Modalidades = () => {
+const Turmas = () => {
   return (
-    <Text>Modalidades</Text>
+    <Text>Turmas</Text>
   )
 }
 
-export default Modalidades
+export default Turmas

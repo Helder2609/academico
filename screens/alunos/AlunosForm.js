@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { ScrollView } from 'react-native'
 import { Button, Text, TextInput } from 'react-native-paper'
 
-const CursosForm = () => {
+const AlunosForm = () => {
 
   const[dados, setDados] = useState({})
 
@@ -16,7 +16,7 @@ setDados({...dados, [campo]: valor})
   return (
     <>
     <ScrollView style={{margin: 10}}>
-    <Text>Formulários do curso</Text>
+    <Text>Dados do Aluno</Text>
       
     <TextInput 
     style={{marginTop: 10}}
@@ -24,27 +24,10 @@ setDados({...dados, [campo]: valor})
       label='Nome'
       value={dados.nome}
       onChangeText={(valor) => handleChage(valor, 'nome')}
-      />
-
-    <TextInput 
-    tyle={{marginTop: 10}} 
-    mode='outlined'
-     label='Duração'
-     value= {dados.duracao}
-     keyboardType='decimal-pad'
-     onChangeText={(valor) => handleChage(valor, 'duracao')}/>
-
-    <TextInput 
-    style={{marginTop: 10}} 
-    mode='outlined' 
-    label='Modalidade'
-    value={dados.modalidade}
-    onChangeText={(valor) => handleChage(valor, 'modalidade')}/>
-    
-    <Button onPress={salvar}>Salvar</Button>
+      />    
     </ScrollView>
     </>
   )
 }
 
-export default CursosForm
+export default AlunosForm
