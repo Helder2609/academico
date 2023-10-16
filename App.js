@@ -11,6 +11,9 @@ import Disciplinas from './screens/disciplinas/Disciplinas';
 import Professores from './screens/professores/Professores';
 import CursoStack from './screens/cursos/CursoStack';
 import Turmas from './screens/turmas/Turmas';
+import AlunosStack from './screens/alunos/AlunosStack';
+import DisciplinasStack from './screens/disciplinas/DisciplinasStack';
+import ProfessoresStack from './screens/professores/ProfessoresStack';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -20,7 +23,7 @@ export default function App() {
       <PaperProvider>
         <NavigationContainer>
           <Tab.Navigator>
-           <Tab.Screen
+            <Tab.Screen
               name="Cursos"
               component={CursoStack}
               options={{
@@ -28,35 +31,35 @@ export default function App() {
                   <MaterialCommunityIcons name="bookshelf" size={26} />
                 ),
               }}
-            /> 
-           <Tab.Screen
+            />
+            <Tab.Screen
               name="Alunos"
-              component={Alunos}
+              component={AlunosStack}
               options={{
                 tabBarIcon: () => (
                   <MaterialCommunityIcons name="account" size={26} />
                 ),
               }}
-            /> 
-           <Tab.Screen
+            />
+            <Tab.Screen
               name="Disciplinas"
-              component={Disciplinas}
+              component={DisciplinasStack}
               options={{
                 tabBarIcon: () => (
                   <MaterialCommunityIcons name="book-open-variant" size={26} />
                 ),
               }}
-            /> 
-           <Tab.Screen
+            />
+            <Tab.Screen
               name="Professores"
-              component={Professores}
+              component={ProfessoresStack}
               options={{
                 tabBarIcon: () => (
                   <MaterialCommunityIcons name="account-tie" size={26} />
                 ),
               }}
-            /> 
-           <Tab.Screen
+            />
+            <Tab.Screen
               name="Turmas"
               component={Turmas}
               options={{
@@ -64,7 +67,7 @@ export default function App() {
                   <MaterialCommunityIcons name="google-classroom" size={26} />
                 ),
               }}
-            /> 
+            />
           </Tab.Navigator>
         </NavigationContainer>
       </PaperProvider>

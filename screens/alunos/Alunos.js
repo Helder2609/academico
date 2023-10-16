@@ -1,17 +1,20 @@
-import React from 'react'
-import { Button, Text } from 'react-native-paper'
+import React from 'react';
+import { Button, Text } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
 
-const Alunos = ({navigation}) => {
+const Alunos = () => {
+  const navigation = useNavigation();
+
   return (
     <>
-            <Text>Cursos</Text>
-            <Button icon='plus'
-             mode=
-             'contained'
-             onPress={()=>navigation.push('Alunos-Form')}
-             >Novo </Button>
-        </>
-  )
+      <Text>ALunos</Text>
+      <Button icon='plus'
+        mode=
+        'contained'
+        onPress={() => navigation.push('AlunosForm')}
+      >Novo </Button>
+    </>
+  );
 }
 
-export default Alunos
+export default Alunos;

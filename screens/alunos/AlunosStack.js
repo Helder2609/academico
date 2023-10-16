@@ -12,8 +12,8 @@ const AlunosStack = () => {
     return (
         <>
             <Stack.Navigator>
-              <Stack.Screen name="Alunos" component={Alunos} options={{ title: 'Cursos' }} />
-              <Stack.Screen name="Alunos-Form" component={AlunosForm} options={{ title: 'Cursos' }} />
+              <Stack.Screen name="Alunos" component={Alunos} options={{ title: 'Alunos' }} />
+              <Stack.Screen name="AlunosForm" component={AlunosForm} options={{ title: 'Alunos' }} />
             </Stack.Navigator>
         </>
     )
