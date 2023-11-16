@@ -1,17 +1,36 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import React, { useState } from 'react'
 import { ScrollView } from 'react-native'
 import { Button, Text, TextInput } from 'react-native-paper'
 
-const AlunosForm = () => {
+const AlunosForm = ({navigation, route}) => {
 
-    const[dados, setDados] = useState({})
+  const alunos = route.params?.alunos || {}
+  const id = route.params?.id
+
+    const[dados, setDados] = useState(alunos)
+    
 
   function handleChage(valor, campo){
 setDados({...dados, [campo]: valor})
   }
 
   function salvar(){
-    console.log(dados)
+    AsyncStorage.getItem('alunos').then(resultado => {
+      
+      const alunos = JSON.parse(resultado) || []
+      
+      if(id >= 0){
+        alunos.splice(id, 1, dados)
+      } else {
+        alunos.push(dados)
+      }
+
+      AsyncStorage.setItem('alunos', JSON.stringify(alunos))
+  
+      navigation.goBack()
+    })
+
   }
     return (
         <>

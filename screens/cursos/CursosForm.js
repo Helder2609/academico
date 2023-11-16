@@ -1,49 +1,73 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import axios from 'axios'
 import React, { useState } from 'react'
 import { ScrollView } from 'react-native'
 import { Button, Text, TextInput } from 'react-native-paper'
 
-const CursosForm = () => {
+const CursosForm = ({navigation, route}) => {
 
-  const[dados, setDados] = useState({})
+  const curso = route.params?.curso || {}
+  const id = route.params?.id
 
-  function handleChage(valor, campo){
-setDados({...dados, [campo]: valor})
+  const [dados, setDados] = useState(curso)
+
+  function handleChange(valor, campo) {
+    setDados({...dados, [campo]: valor })
   }
 
-  function salvar(){
-    console.log(dados)
-  }
-  return (
-    <>
-    <ScrollView style={{margin: 10}}>
-    <Text>Formulários do curso</Text>
+
+
+  function salvar() {
+
+    AsyncStorage.getItem('cursos').then(resultado => {
       
-    <TextInput 
-    style={{marginTop: 10}}
-     mode='outlined'
-      label='Nome'
-      value={dados.nome}
-      onChangeText={(valor) => handleChage(valor, 'nome')}
+      const cursos = JSON.parse(resultado) || []
+      
+      if(id >= 0){
+        cursos.splice(id, 1, dados)
+      } else {
+        cursos.push(dados)
+      }
+
+      AsyncStorage.setItem('cursos', JSON.stringify(cursos))
+  
+      navigation.goBack()
+    })
+
+  }
+
+  return (
+    <ScrollView style={{ margin: 15 }}>
+      <Text>Formulário de Curso</Text>
+
+      <TextInput
+        style={{ marginTop: 10 }}
+        mode='outlined'
+        label='Nome'
+        value={dados.nome}
+        onChangeText={(valor) => handleChange(valor, 'nome')}
       />
 
-    <TextInput 
-    tyle={{marginTop: 10}} 
-    mode='outlined'
-     label='Duração'
-     value= {dados.duracao}
-     keyboardType='decimal-pad'
-     onChangeText={(valor) => handleChage(valor, 'duracao')}/>
+      <TextInput
+        style={{ marginTop: 10 }}
+        mode='outlined'
+        label='Duração'
+        keyboardType='decimal-pad'
+        value={dados.duracao}
+        onChangeText={(valor) => handleChange(valor, 'duracao')}
+      />
 
-    <TextInput 
-    style={{marginTop: 10}} 
-    mode='outlined' 
-    label='Modalidade'
-    value={dados.modalidade}
-    onChangeText={(valor) => handleChage(valor, 'modalidade')}/>
-    
-    <Button onPress={salvar}>Salvar</Button>
+      <TextInput
+        style={{ marginTop: 10 }}
+        mode='outlined'
+        label='Modalidade'
+        value={dados.modalidade}
+        onChangeText={(valor) => handleChange(valor, 'modalidade')}
+      />
+
+      <Button onPress={salvar}>Salvar</Button>
+
     </ScrollView>
-    </>
   )
 }
 
